@@ -1,0 +1,3 @@
+Coloque aqui as fotos de vocês (1.jpg, 2.jpg, 3.jpg...).
+Os nomes precisam ser iguais aos que estão no index.html.
+Dica: reduza as fotos para ~1200px de largura para o site abrir rápido.
