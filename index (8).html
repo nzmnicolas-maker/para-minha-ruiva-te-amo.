@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nós 💞</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* Tema "pôr do sol": pêssego, coral e ameixa */
+  :root{
+    --destaque:#ff6f61; --suave:#ffe3d6; --escuro:#9c3d54;
+    --texto:#4a2c3a; --sombra:0 10px 30px rgba(156,61,84,.18);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Quicksand',sans-serif;color:var(--texto);line-height:1.7;
+    background:linear-gradient(180deg,#fff3e8 0%,#ffe2d8 35%,#f6e6fb 70%,#fff0e6 100%);
+    background-attachment:fixed;overflow-x:hidden;
+  }
+  h1,h2,.script{font-family:'Dancing Script',cursive;color:var(--escuro)}
+  section{padding:80px 20px;max-width:980px;margin:0 auto;text-align:center;position:relative;z-index:1}
+  h2{font-size:clamp(2.2rem,6vw,3.2rem);margin-bottom:10px}
+  .sub{opacity:.8;margin-bottom:40px}
+
+  .coracao{position:fixed;bottom:-40px;z-index:0;pointer-events:none;opacity:.55;animation:subir linear forwards}
+  @keyframes subir{to{transform:translateY(-110vh) rotate(25deg);opacity:0}}
+
+  /* HERO */
+  #hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center}
+  .moldura{width:210px;height:210px;border-radius:50%;overflow:hidden;border:6px solid #fff;box-shadow:var(--sombra);margin-bottom:18px;background:var(--suave)}
+  .moldura img,.moldura .sem-foto{width:100%;height:100%;object-fit:cover;object-position:center 28%;display:block;margin:0;border-radius:0}
+  #hero h1{font-size:clamp(4rem,16vw,7.5rem);line-height:1}
+  #hero .e{font-size:clamp(1.8rem,6vw,2.6rem);display:inline-block;animation:bater 1.4s infinite}
+  @keyframes bater{0%,100%{transform:scale(1)}15%{transform:scale(1.25)}30%{transform:scale(1)}45%{transform:scale(1.18)}}
+  #nomes{font-weight:600;letter-spacing:.04em;margin-top:4px}
+  #frase{margin:14px 0 30px;font-size:1.1rem;max-width:520px}
+  .contador{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:520px;width:100%}
+  @media(min-width:560px){.contador{grid-template-columns:repeat(6,1fr);max-width:700px}}
+  .caixa{background:#fff;border-radius:18px;padding:14px 6px;box-shadow:var(--sombra)}
+  .caixa b{display:block;font-size:1.8rem;color:var(--escuro)}
+  .caixa span{font-size:.78rem;text-transform:uppercase;letter-spacing:.06em}
+  .seta{margin-top:36px;font-size:1.6rem;animation:pular 1.6s infinite;color:var(--destaque)}
+  @keyframes pular{50%{transform:translateY(10px)}}
+
+  /* TIMELINE */
+  .linha{position:relative;padding:10px 0}
+  .linha::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:3px;background:var(--suave);transform:translateX(-50%);border-radius:3px}
+  .momento{position:relative;width:50%;padding:0 34px 40px;text-align:left}
+  .momento:nth-child(odd){left:0;text-align:right}
+  .momento:nth-child(even){left:50%}
+  .momento::after{content:"🧡";position:absolute;top:6px;font-size:1.3rem;background:#fff3e8;border-radius:50%;line-height:1}
+  .momento:nth-child(odd)::after{right:-12px}
+  .momento:nth-child(even)::after{left:-12px}
+  .cartao{background:#fff;border-radius:20px;padding:18px;box-shadow:var(--sombra)}
+  .cartao .data{color:var(--destaque);font-weight:600;font-size:.9rem}
+  .cartao h3{font-family:'Dancing Script',cursive;font-size:1.8rem;color:var(--escuro);line-height:1.2;margin:2px 0 6px}
+  .cartao img{width:100%;border-radius:14px;margin-top:12px;display:block;max-height:520px;object-fit:cover;object-position:center 25%}
+  @media(max-width:700px){
+    .linha::before{left:14px}
+    .momento,.momento:nth-child(even),.momento:nth-child(odd){width:100%;left:0;text-align:left;padding:0 0 32px 44px}
+    .momento:nth-child(odd)::after,.momento:nth-child(even)::after{left:2px;right:auto}
+  }
+
+  /* CARTA */
+  .envelope{font-size:5rem;cursor:pointer;display:inline-block;animation:bater 2s infinite;border:none;background:none}
+  .carta{max-width:640px;margin:20px auto 0;background:#fffdf7;border-radius:6px;padding:36px 30px;box-shadow:var(--sombra);text-align:left;
+    background-image:repeating-linear-gradient(transparent,transparent 31px,#f6e1d8 32px);display:none}
+  .carta.aberta{display:block;animation:surgir .8s ease}
+  .carta p{margin-bottom:16px;line-height:32px}
+  .carta .assinatura{text-align:right;font-family:'Dancing Script',cursive;font-size:2rem;color:var(--escuro)}
+  @keyframes surgir{from{opacity:0;transform:translateY(20px) scale(.97)}}
+
+  /* GALERIA */
+  .galeria{columns:2 220px;column-gap:14px}
+  .foto{break-inside:avoid;margin-bottom:14px;background:#fff;padding:8px 8px 10px;border-radius:12px;box-shadow:var(--sombra);cursor:zoom-in;transition:transform .25s}
+  .foto:nth-child(odd){transform:rotate(-1.2deg)}
+  .foto:nth-child(even){transform:rotate(1.2deg)}
+  .foto:hover{transform:rotate(0) scale(1.03)}
+  .foto img{width:100%;display:block;border-radius:8px}
+  .foto small{display:block;margin-top:6px;font-size:.85rem}
+  .sem-foto{display:flex;align-items:center;justify-content:center;aspect-ratio:4/3;border-radius:10px;
+    background:linear-gradient(135deg,var(--suave),#ffc9b8);font-size:2.4rem;width:100%;margin-top:12px}
+  .foto .sem-foto{margin-top:0}
+  #lightbox{position:fixed;inset:0;background:rgba(50,20,35,.9);display:none;align-items:center;justify-content:center;z-index:50;padding:20px;cursor:zoom-out;flex-direction:column}
+  #lightbox.on{display:flex}
+  #lightbox img{max-width:100%;max-height:82vh;border-radius:12px}
+  #lightbox p{color:#fff;margin-top:12px}
+
+  /* MOTIVOS */
+  .motivos{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
+  .motivo{background:#fff;border-radius:18px;padding:20px;box-shadow:var(--sombra);text-align:left}
+  .motivo b{color:var(--destaque);font-family:'Dancing Script',cursive;font-size:2rem;display:block;line-height:1}
+
+  /* FINAL */
+  .olhos{width:min(420px,100%);margin:0 auto 26px;border-radius:26px;overflow:hidden;border:6px solid #fff;box-shadow:var(--sombra)}
+  .olhos img,.olhos .sem-foto{display:block;width:100%;margin:0;border-radius:0}
+  #final .grande{font-size:clamp(2.6rem,9vw,5rem)}
+  #final button{margin-top:24px;background:var(--destaque);color:#fff;border:none;padding:14px 30px;border-radius:999px;font:600 1.05rem 'Quicksand';cursor:pointer;box-shadow:var(--sombra);transition:transform .2s}
+  #final button:hover{transform:scale(1.07)}
+  footer{padding:30px;text-align:center;font-size:.85rem;opacity:.7}
+
+  .rev{opacity:0;transform:translateY(26px);transition:all .8s ease}
+  .rev.on{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     ✏️  EDITE AQUI  ✏️
+     Tudo o que você precisa mudar está neste bloco CONFIG.
+     ============================================================ -->
+<script>
+const CONFIG = {
+  tituloAba: "Nós 💞",
+  tituloHero: "Nós",
+  fotoHero: "fotos/por-do-sol.jpg",
+
+  nomeDela: "Malu",
+  seuNome:  "Nicolas",
+
+  // Começo do namoro (ano-mês-dia): 26 de agosto de 2025
+  dataInicio: "2025-08-26T00:00:00",
+
+  fraseInicial: "Eu fiz esse cantinho só pra gente, porque o nosso amor merece ser guardado.",
+
+  // Linha do tempo. "data" e "foto" são opcionais (deixe "" para não mostrar).
+  momentos: [
+    { data: "26/08/2025", titulo: "O dia em que tudo começou", texto: "Foi o dia em que a gente começou a namorar, e desde então os meus dias têm outra cor.", foto: "" },
+    { data: "", titulo: "Uma noite só nossa", texto: "Você linda de rosa, eu sorrindo à toa do seu lado. Perfeito.", foto: "fotos/noite.jpg" },
+    { data: "", titulo: "O meu lugar favorito", texto: "É qualquer um, desde que seja do seu lado.", foto: "fotos/restaurante.jpg" },
+    { data: "", titulo: "O dia do seu jaleco", texto: "Tão orgulhoso de você e de tudo que você já conquistou. Você vai longe!", foto: "fotos/jaleco.jpg" },
+  ],
+
+  carta: [
+    "Malu, minha ruiva,",
+    "Eu sei que não sou muito de demonstrar sentimentos, né? Kkkk. Brincadeira! Mas essa ideia foi única e exclusivamente para você. Quis reunir um pouco de cada coisa e de cada momento nosso.",
+    "Eu não quero ser só o seu namorado, o seu melhor amigo e o seu companheiro. Quero ser muito mais que isso: quero ser o seu esposo, o seu marido, tudo o que vier além. Quero que você sempre tenha noção do quanto eu vou te amar e cuidar de você, porque você merece.",
+    "Eu comecei gostando de você e acabei me apaixonando. Hoje sei qual é o verdadeiro significado do amor, porque eu o sinto com você: nos dias felizes e nos tristes, principalmente quando conhecemos os defeitos um do outro e, mesmo assim, continuamos melhorando e fazendo dar certo.",
+    "Espero que você sempre enxergue o nosso relacionamento como único e diferente, porque eu me esforço por nós do mesmo jeito que você. Somos assim: trabalhamos bastante, principalmente por sermos jovens. Fico muito feliz por ter encontrado praticamente uma alma gêmea. Sei que temos mundos diferentes, mas fazemos de tudo para incluir um ao outro e construir o nosso mundinho.",
+    "É isso: você é a minha paz, o meu lar e a minha mulher de verdade. Eu te amo demais, e você não tem noção do que eu sinto. A cada dia eu quero mais: estar junto, presente e fazendo de tudo por você.",
+  ],
+  assinatura: "Com todo o meu amor, Nicolas, seu bem 💕",
+
+  galeria: [
+    { src: "fotos/caretas.jpg",      legenda: "Nossas caretas favoritas 🐶" },
+    { src: "fotos/flores-azuis.jpg", legenda: "Flores azuis pra você" },
+    { src: "fotos/rosas.jpg",        legenda: "Rosas, porque você merece" },
+    { src: "fotos/joalheria.jpg",    legenda: "Procurando o presente perfeito" },
+    { src: "fotos/laughings.jpg",      legenda: "Rindo à toa, como sempre" },
+  ],
+
+  motivos: [
+    "O seu sorriso me desarma.",
+    "Você me entende até quando eu não falo nada.",
+    "Do seu lado tudo vira aventura.",
+    "Você torna os meus dias mais leves.",
+    "O seu abraço é o meu lugar favorito.",
+    "Você é a minha pessoa.",
+  ],
+
+  fotoFinal: "fotos/olhos.jpg",
+  mensagemFinal: "Eu te amo de alma!",
+  mensagemBotao: "Clique aqui 💖",
+  mensagemSurpresa: "Obrigado por existir na minha vida, minha ruiva. Eu escolheria você todos os dias. 💕",
+  assinaturaFinal: "Nicolas, seu bem 🧡",
+};
+</script>
+
+<!-- ======================= NÃO PRECISA MEXER DAQUI PRA BAIXO ======================= -->
+
+<section id="hero">
+  <div class="moldura" id="moldura"></div>
+  <h1 class="script" id="tituloHero"></h1>
+  <span class="e">💞</span>
+  <p id="nomes"></p>
+  <p id="frase"></p>
+  <p class="script" style="font-size:1.8rem;margin-bottom:14px">Juntos há</p>
+  <div class="contador" id="contador"></div>
+  <div class="seta">⌄</div>
+</section>
+
+<section id="historia">
+  <h2 class="rev">Nossa história</h2>
+  <p class="sub rev">Cada momento que me trouxe até você</p>
+  <div class="linha" id="linha"></div>
+</section>
+
+<section id="cartaSec">
+  <h2 class="rev">Uma carta pra você</h2>
+  <p class="sub rev">Toque no envelope</p>
+  <button class="envelope" id="envelope" aria-label="Abrir carta">💌</button>
+  <div class="carta" id="carta"></div>
+</section>
+
+<section id="fotos">
+  <h2 class="rev">Nossos momentos</h2>
+  <p class="sub rev">Algumas lembranças que moram no meu coração</p>
+  <div class="galeria" id="galeria"></div>
+</section>
+
+<section id="motivosSec">
+  <h2 class="rev">Por que eu te amo</h2>
+  <p class="sub rev">Só alguns dos milhares de motivos</p>
+  <div class="motivos" id="motivos"></div>
+</section>
+
+<section id="final">
+  <div class="olhos rev" id="olhos"></div>
+  <h2 class="script grande rev" id="msgFinal"></h2>
+  <button id="botao"></button>
+  <p id="surpresa" class="script" style="font-size:1.9rem;margin-top:24px;min-height:3em"></p>
+  <p class="script rev" id="assFinal" style="font-size:2rem;margin-top:10px"></p>
+</section>
+
+<footer>Feito com amor por <span id="seuNome"></span> 💗</footer>
+
+<div id="lightbox"><img alt=""><p></p></div>
+
+<script>
+(function(){
+  const C = CONFIG;
+  const $ = id => document.getElementById(id);
+  document.title = C.tituloAba;
+  $('tituloHero').textContent = C.tituloHero;
+  $('nomes').textContent = C.seuNome + ' & ' + C.nomeDela;
+  $('seuNome').textContent = C.seuNome;
+  $('frase').textContent = C.fraseInicial;
+  $('msgFinal').textContent = C.mensagemFinal;
+  $('botao').textContent = C.mensagemBotao;
+
+  // imagem com fallback fofo se o arquivo não existir
+  function imagem(src, alt){
+    if(!src) return document.createDocumentFragment();
+    const img = new Image();
+    img.alt = alt || ''; img.loading = 'lazy'; img.src = src;
+    img.onerror = () => { const d = document.createElement('div'); d.className='sem-foto'; d.textContent='💗'; img.replaceWith(d); };
+    return img;
+  }
+
+  $('olhos').append(imagem(C.fotoFinal, 'Os olhos da Malu'));
+  $('assFinal').textContent = C.assinaturaFinal;
+  $('moldura').append(imagem(C.fotoHero, C.tituloHero));
+
+  // ---- contador ao vivo ----
+  const inicio = new Date(C.dataInicio);
+  const unidades = ['anos','meses','dias','horas','min','seg'];
+  $('contador').innerHTML = unidades.map(u=>`<div class="caixa"><b id="u-${u}">0</b><span>${u}</span></div>`).join('');
+  function atualizar(){
+    const agora = new Date();
+    let a = agora.getFullYear()-inicio.getFullYear();
+    let m = agora.getMonth()-inicio.getMonth();
+    let d = agora.getDate()-inicio.getDate();
+    let h = agora.getHours()-inicio.getHours();
+    let mi = agora.getMinutes()-inicio.getMinutes();
+    let s = agora.getSeconds()-inicio.getSeconds();
+    if(s<0){s+=60;mi--} if(mi<0){mi+=60;h--} if(h<0){h+=24;d--}
+    if(d<0){ d += new Date(agora.getFullYear(), agora.getMonth(), 0).getDate(); m--; }
+    if(m<0){m+=12;a--}
+    const v={anos:a,meses:m,dias:d,horas:h,min:mi,seg:s};
+    unidades.forEach(u=>$('u-'+u).textContent=Math.max(0,v[u]));
+  }
+  atualizar(); setInterval(atualizar,1000);
+
+  // ---- linha do tempo ----
+  C.momentos.forEach(mo=>{
+    const li = document.createElement('div'); li.className='momento rev';
+    const c = document.createElement('div'); c.className='cartao';
+    if(mo.data){ const dt = document.createElement('div'); dt.className='data'; dt.textContent=mo.data; c.append(dt); }
+    const h3 = document.createElement('h3'); h3.textContent=mo.titulo;
+    const p = document.createElement('p'); p.textContent=mo.texto;
+    c.append(h3,p);
+    if(mo.foto) c.append(imagem(mo.foto, mo.titulo));
+    li.append(c); $('linha').append(li);
+  });
+
+  // ---- carta ----
+  C.carta.forEach(t=>{ const p=document.createElement('p'); p.textContent=t; $('carta').append(p); });
+  const ass = document.createElement('p'); ass.className='assinatura'; ass.textContent=C.assinatura; $('carta').append(ass);
+  $('envelope').onclick = ()=>{ $('carta').classList.add('aberta'); $('envelope').style.display='none'; chuva(18); };
+
+  // ---- galeria + lightbox ----
+  const lb = $('lightbox');
+  C.galeria.forEach(f=>{
+    const d = document.createElement('div'); d.className='foto rev';
+    d.append(imagem(f.src, f.legenda));
+    const s = document.createElement('small'); s.textContent=f.legenda; d.append(s);
+    d.onclick = ()=>{ const im=d.querySelector('img'); if(!im) return; lb.querySelector('img').src=im.src; lb.querySelector('p').textContent=f.legenda; lb.classList.add('on'); };
+    $('galeria').append(d);
+  });
+  lb.onclick = ()=>lb.classList.remove('on');
+
+  // ---- motivos ----
+  C.motivos.forEach((t,i)=>{
+    const d=document.createElement('div'); d.className='motivo rev';
+    const b=document.createElement('b'); b.textContent=(i+1);
+    const p=document.createElement('span'); p.textContent=t;
+    d.append(b,p); $('motivos').append(d);
+  });
+
+  $('botao').onclick = ()=>{ $('surpresa').textContent=C.mensagemSurpresa; chuva(40); };
+
+  // ---- corações ----
+  function coracao(){
+    const c=document.createElement('div'); c.className='coracao';
+    c.textContent=['🧡','💗','💕','🩷','❤️'][Math.floor(Math.random()*5)];
+    c.style.left=Math.random()*100+'vw';
+    c.style.fontSize=(14+Math.random()*22)+'px';
+    const dur=6+Math.random()*6; c.style.animationDuration=dur+'s';
+    document.body.append(c); setTimeout(()=>c.remove(),dur*1000);
+  }
+  function chuva(n){ for(let i=0;i<n;i++) setTimeout(coracao,i*90); }
+  setInterval(coracao,1400); chuva(6);
+
+  // ---- aparecer ao rolar ----
+  const io = new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){e.target.classList.add('on'); io.unobserve(e.target);} }),{threshold:.15});
+  document.querySelectorAll('.rev').forEach(el=>io.observe(el));
+})();
+</script>
+</body>
+</html>
